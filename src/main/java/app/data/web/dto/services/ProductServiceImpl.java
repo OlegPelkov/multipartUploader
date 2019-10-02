@@ -29,7 +29,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public List<ProductDTO> findProductsByName(String name) throws Exception {
-        List<ProductEntity> productEntities = productRepository.findByNameLike(name);
+        List<ProductEntity> productEntities = productRepository.findByNameContaining(name);
         List<ProductDTO> productDTOs = new ArrayList<>();
         for (ProductEntity entity : productEntities) {
             productDTOs.add(modelMapper.map(entity, ProductDTO.class));
@@ -38,8 +38,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public List<ProductDTO> findProductsByParams(Map<String, String> params) throws Exception {
-        return null;
+        List<ProductEntity> productEntities = productRepository.findProductsByParams(params);
+        List<ProductDTO> productDTOs = new ArrayList<>();
+        for (ProductEntity entity : productEntities) {
+            productDTOs.add(modelMapper.map(entity, ProductDTO.class));
+        }
+        return productDTOs;
     }
 
     @Override

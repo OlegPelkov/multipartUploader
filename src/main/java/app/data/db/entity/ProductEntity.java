@@ -4,13 +4,7 @@ import lombok.Data;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,7 +28,8 @@ public class ProductEntity {
     @NotNull(message = "Name may not be null")
     private String description;
 
+    @CollectionTable(name = "product_properties")
+    @Column(name = "properties")
     @ElementCollection
     private Map<String, String> properties = new HashMap<>();
-
 }

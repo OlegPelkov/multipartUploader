@@ -5,10 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public interface ProductRepository extends CrudRepository<ProductEntity, Long>,
@@ -18,6 +15,6 @@ public interface ProductRepository extends CrudRepository<ProductEntity, Long>,
 
     List<ProductEntity> findByNameContaining(String nameStartsWith);
 
-    @Query("select p from product_properties p where p.key = ?1 group by id")
-    List<ProductEntity> findByParam(String param);
+    //@Query("select p from product_properties p where p.name = ?1 p.v = ?2 and group by id")
+  //  List<ProductEntity> findByParam(String paramName, String paramValue);
 }

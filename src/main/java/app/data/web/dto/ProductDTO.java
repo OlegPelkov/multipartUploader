@@ -28,4 +28,8 @@ public class ProductDTO {
     public String getName() {
         return name;
     }
+
+    public Map<String, String> getProperties() {
+        return properties;
+    }
 }
